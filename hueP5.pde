@@ -22,7 +22,7 @@ Slider abc;
 Client c;
 String data;
 
-String apiKey = "newdeveloper"; //devleoper name used when setting up bridge
+String apiKey = "newdeveloper"; //developer name used when setting up bridge
 String light = "1"; //the light # you want to control
 
 void setup() {

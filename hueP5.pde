@@ -1,17 +1,3 @@
-/**
- * HTTP Client. 
- * 
- * Starts a network client that connects to a server on port 80,
- * sends an HTTP 1.0 GET request, and prints the results. 
- *
- * Note that this code is not necessary for simple HTTP GET request:
- * Simply calling loadStrings("http://www.processing.org") would do
- * the same thing as (and more efficiently than) this example.
- * This example is for people who might want to do something more 
- * complicated later.
- */
- 
-
 import processing.net.*;
 import controlP5.*;
 
@@ -36,8 +22,8 @@ Slider abc;
 Client c;
 String data;
 
-String apiKey = "newdeveloper";
-String light = "1";
+String apiKey = "newdeveloper"; //devleoper name used when setting up bridge
+String light = "1"; //the light # you want to control
 
 void setup() {
   size(700, 400);
@@ -59,7 +45,7 @@ void setup() {
   
   cp5.addSlider("sliderValue2")
      .setPosition(100,250)
-     .setRange(0,6000)
+     .setRange(0,60000)
      ;
   
 }
@@ -88,20 +74,13 @@ void draw() {
     
       if (val != prev ){ // if new reading is different than the old one
       
-          print("sliderValue");
-          println(sliderValue);
-          print("val");
-          println(val);
-          print("len");
-          println(len);
-          
           c = new Client(this, "192.168.2.100", 80); // Connect to server on port 80
-          c.write("PUT /api/" + apiKey +"/lights/" + light + "/state HTTP/1.1\r\n"); // Use the HTTP "GET" command to ask for a Web page
+          c.write("PUT /api/" + apiKey +"/lights/" + light + "/state HTTP/1.1\r\n"); 
           c.write("Content-Length: " + 18 +len + "\r\n\r\n");
           c.write("{\"bri\":" + val +"}\r\n");
           c.write("\r\n");
           c.stop();
-          sendHTTPData();
+          //sendHTTPData();
           
           println("sent");  // command executed
           delay(1); // slight delay
@@ -109,21 +88,15 @@ void draw() {
       }
       
       if (val1 != prev1 ){ // if new reading is different than the old one
-      
-          print("sliderValue");
-          println(sliderValue);
-          print("val");
-          println(val);
-          print("len");
-          println(len);
+   
           
           c = new Client(this, "192.168.2.100", 80); // Connect to server on port 80
-          c.write("PUT /api/" + apiKey +"/lights/" + light + "/state HTTP/1.1\r\n"); // Use the HTTP "GET" command to ask for a Web page
+          c.write("PUT /api/" + apiKey +"/lights/" + light + "/state HTTP/1.1\r\n"); 
           c.write("Content-Length: " + 18 + len1 + "\r\n\r\n");
           c.write("{\"sat\":" + val1 +"}\r\n");
           c.write("\r\n");
           c.stop();
-          sendHTTPData();
+          //sendHTTPData();
           
           println("sent");  // command executed
           delay(1); // slight delay
@@ -140,12 +113,12 @@ void draw() {
           println(len);
           
           c = new Client(this, "192.168.2.100", 80); // Connect to server on port 80
-          c.write("PUT /api/" + apiKey +"/lights/" + light + "/state HTTP/1.1\r\n"); // Use the HTTP "GET" command to ask for a Web page
+          c.write("PUT /api/" + apiKey +"/lights/" + light + "/state HTTP/1.1\r\n"); 
           c.write("Content-Length: " + 18 + len2 + "\r\n\r\n");
           c.write("{\"hue\":" + val2 +"}\r\n");
           c.write("\r\n");
           c.stop();
-          sendHTTPData();
+          //sendHTTPData();
           
           println("sent");  // command executed
           delay(1); // slight delay
